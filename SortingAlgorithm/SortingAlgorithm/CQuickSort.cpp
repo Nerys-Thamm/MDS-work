@@ -1,10 +1,18 @@
 #include "CQuickSort.h"
+#include <iostream>
 
 
-using namespace std;
-void CQuickSort::Sort(vector<int>& _input)
+void CQuickSort::Swap(int& _iSwap1, int& _iSwap2)
 {
-	int iSize = _input.size;
+	int iTemp = _iSwap1;
+	_iSwap1 = _iSwap2;
+	_iSwap2 = iTemp;
+	return;
+}
+void CQuickSort::Sort(std::vector<int>& _input)
+{
+	int iSize = static_cast<int>(_input.size());
+	std::cout << "a";
 	if (iSize == 1) { return; }
 	if (iSize == 2) 
 	{
@@ -17,6 +25,7 @@ void CQuickSort::Sort(vector<int>& _input)
 	int iUpCounter, iDownCounter;
 	bool bHasSwapped = false;
 	Swap(_input[0], _input[ceil(iSize / 2)]);
+	std::cout << "b";
 	int iUpIndex = 1, iDownIndex = iSize;
 	do
 	{
@@ -25,6 +34,7 @@ void CQuickSort::Sort(vector<int>& _input)
 		do
 		{
 			iUpCounter = _input[iUpIndex];
+			std::cout << "c";
 		} while (!(iUpCounter++ > _input[0]));
 		do
 		{
@@ -33,10 +43,11 @@ void CQuickSort::Sort(vector<int>& _input)
 
 		Swap(_input[iUpIndex], _input[iDownIndex]);
 		
+		
 	} while (iUpIndex < iDownIndex);
 	Swap(_input[iDownIndex], _input[0]);
 
-	vector<int> LowerVector, UpperVector;
+	std::vector<int> LowerVector, UpperVector;
 
 	for (int i = 0; i < iDownIndex; i++)
 	{
@@ -60,9 +71,4 @@ void CQuickSort::Sort(vector<int>& _input)
 
 }
 
-void CQuickSort::Swap(int& _iSwap1, int& _iSwap2)
-{
-	int iTemp = _iSwap1;
-	_iSwap1 = _iSwap2;
-	_iSwap2 = iTemp;
-}
+

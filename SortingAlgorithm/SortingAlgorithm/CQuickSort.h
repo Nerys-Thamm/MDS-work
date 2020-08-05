@@ -1,11 +1,11 @@
 #include <vector>
+
 #pragma once
-static class CQuickSort
+class CQuickSort
 {
 public:
-	static void Sort(vector<int>& _input);
-private:
 	static void Swap(int& _iSwap1, int& _iSwap2);
+	void Sort(std::vector<int>& _input);
 
 };
 
