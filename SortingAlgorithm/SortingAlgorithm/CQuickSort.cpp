@@ -13,7 +13,7 @@ void CQuickSort::Sort(std::vector<int>& _input)
 {
 	int iSize = static_cast<int>(_input.size());
 	std::cout << "a";
-	if (iSize == 1) { return; }
+	if (iSize <= 1) { return; }
 	if (iSize == 2) 
 	{
 		if (_input[0] > _input[1])
@@ -24,27 +24,25 @@ void CQuickSort::Sort(std::vector<int>& _input)
 	}
 	int iUpCounter, iDownCounter;
 	bool bHasSwapped = false;
-	Swap(_input[0], _input[ceil(iSize / 2)]);
+	Swap(_input[0], _input[ceil(iSize / 2)-1]);
 	std::cout << "b";
-	int iUpIndex = 1, iDownIndex = iSize;
-	do
+	int iUpIndex = 0, iDownIndex = iSize;
+	while (iUpIndex < iDownIndex)
 	{
-		iUpIndex = 1;
-		iDownIndex = iSize;
-		do
-		{
-			iUpCounter = _input[iUpIndex];
-			std::cout << "c";
-		} while (!(iUpCounter++ > _input[0]));
-		do
-		{
-			iDownCounter = _input[iDownIndex];
-		} while (!(iUpCounter-- < _input[0]));
 
-		Swap(_input[iUpIndex], _input[iDownIndex]);
+		for (int i = 1; i < iSize; i++)
+		{
+			if (_input[i] > _input[0])
+			{
+				iUpCounter = _input[i];
+				break;
+			}
+		}
+
+		Swap(_input[iUpIndex], _input[iDownIndex++]);
+		std::cout << "e";
 		
-		
-	} while (iUpIndex < iDownIndex);
+	} 
 	Swap(_input[iDownIndex], _input[0]);
 
 	std::vector<int> LowerVector, UpperVector;
@@ -55,15 +53,16 @@ void CQuickSort::Sort(std::vector<int>& _input)
 	}
 	for (int i = iSize; i > iDownIndex; i--)
 	{
-		UpperVector.push_back(_input[i]);
+		UpperVector.push_back(_input[i-1]);
 	}
+
 	Sort(LowerVector);
 	Sort(UpperVector);
 	for (int i = 0; i < iDownIndex; i++)
 	{
 		_input[i] = LowerVector[i];
 	}
-	for (int i = iSize; i > iDownIndex; i--)
+	for (int i = iSize-1; i > iDownIndex; i--)
 	{
 		_input[i] = UpperVector[i];
 	}
