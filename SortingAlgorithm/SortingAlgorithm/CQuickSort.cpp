@@ -1,72 +1,67 @@
 #include "CQuickSort.h"
 #include <iostream>
+#include <cstdlib>
+#include <time.h>
 
 
-void CQuickSort::Swap(int& _iSwap1, int& _iSwap2)
+void CQuickSort::m_Swap(int& _iSwap1, int& _iSwap2)
 {
 	int iTemp = _iSwap1;
 	_iSwap1 = _iSwap2;
 	_iSwap2 = iTemp;
 	return;
 }
-void CQuickSort::Sort(std::vector<int>& _input)
+int CQuickSort::m_Partition(int _input[], int _iLow, int _iHigh, bool _bAscending)
 {
-	int iSize = static_cast<int>(_input.size());
-	std::cout << "a";
-	if (iSize <= 1) { return; }
-	if (iSize == 2) 
-	{
-		if (_input[0] > _input[1])
-		{
-			Swap(_input[0], _input[1]);
-		}
-		return;
-	}
-	int iUpCounter, iDownCounter;
-	bool bHasSwapped = false;
-	Swap(_input[0], _input[ceil(iSize / 2)-1]);
-	std::cout << "b";
-	int iUpIndex = 0, iDownIndex = iSize;
-	while (iUpIndex < iDownIndex)
-	{
+	int iPivotIndex = _iHigh, iCurrentIndex = _iLow;
 
-		for (int i = 1; i < iSize; i++)
+	if (_bAscending)
+	{
+		for (int i = _iLow; i < _iHigh; i++)
 		{
-			if (_input[i] > _input[0])
+			if (_input[i] < _input[iPivotIndex])
 			{
-				iUpCounter = _input[i];
-				break;
+				m_Swap(_input[i], _input[iCurrentIndex]);
+				iCurrentIndex++;
 			}
 		}
-
-		Swap(_input[iUpIndex], _input[iDownIndex++]);
-		std::cout << "e";
-		
-	} 
-	Swap(_input[iDownIndex], _input[0]);
-
-	std::vector<int> LowerVector, UpperVector;
-
-	for (int i = 0; i < iDownIndex; i++)
-	{
-		LowerVector.push_back(_input[i]);
 	}
-	for (int i = iSize; i > iDownIndex; i--)
+	else
 	{
-		UpperVector.push_back(_input[i-1]);
+		for (int i = _iLow; i < _iHigh; i++)
+		{
+			if (_input[i] > _input[iPivotIndex])
+			{
+				m_Swap(_input[i], _input[iCurrentIndex]);
+				iCurrentIndex++;
+			}
+		}
 	}
+	m_Swap(_input[iPivotIndex], _input[iCurrentIndex]);
 
-	Sort(LowerVector);
-	Sort(UpperVector);
-	for (int i = 0; i < iDownIndex; i++)
+	return iCurrentIndex;
+
+}
+int CQuickSort::m_RandPivotSelection(int _input[], int _iLow, int _iHigh, bool _bAscending)
+{
+	int iPivotIndex, iRandomNumber;
+	
+	iRandomNumber = rand();
+	
+	iPivotIndex = _iLow + iRandomNumber % (_iHigh - _iLow + 1);
+	m_Swap(_input[_iHigh], _input[iPivotIndex]);
+	return m_Partition(_input, _iLow, _iHigh, _bAscending);
+}
+int CQuickSort::Sort(int _input[], int _iLow, int _iHigh, bool _bAscending)
+{
+	int iPivotIndex;
+	if (_iLow < _iHigh)
 	{
-		_input[i] = LowerVector[i];
+		iPivotIndex = m_RandPivotSelection(_input, _iLow, _iHigh, _bAscending);
+		Sort(_input, _iLow, iPivotIndex - 1, _bAscending);
+		Sort(_input, iPivotIndex + 1, _iHigh, _bAscending);
 	}
-	for (int i = iSize-1; i > iDownIndex; i--)
-	{
-		_input[i] = UpperVector[i];
-	}
-	return;
+	return 0;
 
 }
 
