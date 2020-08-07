@@ -10,21 +10,31 @@ using namespace std;
 
 int main()
 {
+	int iArrSize;
+	
 	srand(time(NULL));
 	CQuickSort s;
-	int arr[10] = { 10,9,8,7,6,5,4,3,2,1 };
-	for (int i = 0; i < 10; i++)
+
+	cout << "Pwease iwnput the amownt owf dataw ewements UwU:" << endl;
+	cin >> iArrSize;
+	int* iArr = new int[iArrSize];
+	cout << endl << "Pwease iwnput yowr dataw ewements owo: ";
+	
+
+	for (int i = 0; i < iArrSize; i++)
 	{
-		cout << arr[i];
+		cin >> iArr[i];
 	}
+	
+	
 	cout << endl;
-	s.Sort(arr, 0, 9, false);
+	s.Sort(iArr, 0, iArrSize-1, true);
 
 
 	
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < iArrSize; i++)
 	{
-		cout << arr[i];
+		cout << iArr[i] << " ";
 	}
 	
 	return 0x0;
