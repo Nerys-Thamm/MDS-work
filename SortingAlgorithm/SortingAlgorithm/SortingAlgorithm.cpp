@@ -1,5 +1,24 @@
-// SortingAlgorithm.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+////////////////////////////////////////////////////////////
+//========================================================//
+// Bachelor of Software Engineering                       //
+// Media Design School                                    //
+// Auckland                                               //
+// New Zealand                                            //
+//--------------------------------------------------------//
+// (c) 2020 Media Design School                           //
+//========================================================//
+//   File Name  : SortingAlgorithm.cpp                    //
+//--------------------------------------------------------//
+//  Description : Contains the Main function. Reads an    //
+//  input text file to sort provided elements in          //
+//  Ascending or Descending order using a recursive       //
+//  QuickSort algorithm. See README.txt for instructions. //
+//--------------------------------------------------------//
+//    Author    : Nerys Thamm BSE20021                    //
+//--------------------------------------------------------//
+//    E-mail    : NerysThamm@gmail.com                    //
+//========================================================//
+////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include "CQuickSort.h"
@@ -10,7 +29,7 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[])//Main takes parameters to allow for command line input. This is needed so the path of the input file can be specified
 {
 
 	fstream f; //Create filestream
