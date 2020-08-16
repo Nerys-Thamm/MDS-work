@@ -7,7 +7,7 @@
 //--------------------------------------------------------//
 // (c) 2020 Media Design School                           //
 //========================================================//
-//   File Name  : Deque.cpp                               //
+//   File Name  : CNodeDoubleLinked.h                     //
 //--------------------------------------------------------//
 //  Description :                                         //
 //                                                        //
@@ -19,23 +19,26 @@
 //    E-mail    : NerysThamm@gmail.com                    //
 //========================================================//
 ////////////////////////////////////////////////////////////
-
-#include <iostream>
-#include "CDeque.h"
-using namespace std;
-
-int main()
+#pragma once
+template <class T>
+class CNodeDoubleLinked
 {
-    CDeque<int> deque;
-    deque.Enqueue_Back(1);
-    deque.Enqueue_Front(2);
-    deque.Enqueue_Back(3);
-    deque.Enqueue_Front(4);
+public:
+	CNodeDoubleLinked(T _data)
+	{
+		pForeNode = nullptr;
+		pAftNode = nullptr;
+		m_data = _data;
+	}
+	CNodeDoubleLinked(T _data, CNodeDoubleLinked* _pForeNode, CNodeDoubleLinked* _pAftNode)
+	{
+		pForeNode = _pForeNode;
+		pAftNode = _pAftNode;
+		m_data = _data;
+	}
+	CNodeDoubleLinked<T>* pForeNode;
+	CNodeDoubleLinked<T>* pAftNode;
+	T m_data;
 
-    cout << deque.Dequeue_Front();
-    cout << deque.Dequeue_Front();
-    cout << deque.Dequeue_Front();
-    cout << deque.Dequeue_Front();
-    cout << deque.IsEmpty();
-}
+};
 

@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CDeque.cpp" />
+    <ClCompile Include="CNodeDoubleLinked.cpp" />
     <ClCompile Include="Deque.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CDeque.h" />
+    <ClInclude Include="CNodeDoubleLinked.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
